@@ -24,7 +24,7 @@ public class SnacksListService implements ISnacksServie {
         for (var snack : snacks) {
             inventarioSnacks.append(snack.toString()).append("\n");
         }
-        System.out.println("--- Snacks en el Inventario ---");
+        System.out.println("--- Snacks in Inventory ---");
         System.out.println(inventarioSnacks);
     }
 
