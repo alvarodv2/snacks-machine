@@ -41,7 +41,8 @@ public class SnacksMachine {
                 1. Buy snack
                 2. Show receipt
                 3. Add new snack
-                4. Exit
+                4. Delete snack
+                5. Exit
                 Choose an option:\s""");
         return Integer.parseInt(scanner.nextLine());
     }
@@ -53,7 +54,8 @@ public class SnacksMachine {
             case 1 -> buySnack(scanner, products, snacksService);
             case 2 -> showReceipt(products);
             case 3 -> addSnack(scanner, snacksService);
-            case 4 -> {
+            case 4 -> deleteSnack(scanner, snacksService);
+            case 5 -> {
                 System.out.println("Come back soon!");
                 exit = true;
             }
@@ -100,5 +102,25 @@ public class SnacksMachine {
         System.out.println("Your snack has been added successfully");
         snacksService.showSnacks();
     }
+
+    private static void deleteSnack(Scanner scanner, ISnacksServie snacksService) {
+        System.out.print("Snack Id: ");
+        var snackId = Integer.parseInt(scanner.nextLine());
+        Snack snackToDelete = null;
+
+        for (var snack : snacksService.getSnacks()) {
+            if (snack.getSnackId() == snackId) {
+                snackToDelete = snack;
+                break;
+            }
+        }
+
+        if (snackToDelete != null) {
+            snacksService.deleteSnack(snackToDelete);
+        } else {
+            System.out.println("Snack id not found: " + snackId);
+        }
+    }
+
 
 }

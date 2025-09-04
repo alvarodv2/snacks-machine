@@ -32,4 +32,13 @@ public class SnacksListService implements ISnacksServie {
         return snacks;
     }
 
+    @Override
+    public void deleteSnack(Snack snack) {
+        if (snacks.remove(snack)) {
+            System.out.println("Snack deleted successfully: " + snack.getName());
+        } else {
+            System.out.println("Snack not found: " + snack.getName());
+        }
+    }
+
 }

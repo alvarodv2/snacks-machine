@@ -124,4 +124,25 @@ public class SnacksFileService implements ISnacksServie {
         return this.snacksList;
     }
 
+    @Override
+    public void deleteSnack(Snack snack) {
+        if (this.snacksList.remove(snack)) {
+            rewriteFile();
+            System.out.println("Snack deleted successfully: " + snack.getName());
+        } else {
+            System.out.println("Snack not found: " + snack.getName());
+        }
+    }
+
+    private void rewriteFile() {
+        var file = new File(FILE_NAME);
+        try (var output = new PrintWriter(new FileWriter(file))) {
+            for (var snack : this.snacksList) {
+                output.println(snack.snackWriter());
+            }
+        } catch (Exception e) {
+            System.err.println("Error rewriting file: " + e.getMessage());
+        }
+    }
+
 }

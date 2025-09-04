@@ -9,6 +9,6 @@ public interface ISnacksServie {
     void addSnack(Snack snack);
     void showSnacks();
     List<Snack> getSnacks();
-
+    void deleteSnack(Snack snack);
 
 }
